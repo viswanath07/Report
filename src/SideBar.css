@@ -1,0 +1,172 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500&family=Poppins:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&display=swap');
+
+
+.rewop{
+    position: absolute;
+left: 3.93%;
+right: 86.53%;
+top: 1.17%;
+bottom: 93.46%;
+
+font-family: 'Poppins', sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 45px;
+line-height: 54px;
+
+color: #22C55E;
+}
+.side-bar{
+    position: absolute;
+width: 264px;
+height: 1024px;
+left: 0px;
+top: 0px;
+
+background: #2A3342;
+/* background: red; */
+}
+.side-container{
+    position: absolute;
+    top: 100px;
+    left: 14px;
+    width: 228px;
+height: 399.121px;
+display: flex;
+
+flex-direction: column;
+
+gap: 10.894px;
+
+
+}
+.lead{
+    
+    left: 35px;
+    top: 5px;
+    
+
+}
+.deals{
+    
+
+
+    top: 40px;
+    
+}
+.contacts{
+    
+    top: 70px;
+    
+}
+.font{
+    color: #BBC3CF;
+font-size: 14px;
+font-family: 'Manrope', sans-serif;
+letter-spacing: 0.14px;
+position: absolute;
+   bottom: 2px;
+   /* right: -5px;  */
+   flex-direction: column;
+flex-shrink: 0;
+}
+.text1{
+    /* display: flex; */
+   /* right: -5px; */
+   left: 35px;
+width: 91.303px;
+
+}
+.text2{
+    left: 37px;
+width: 62.686px;
+
+}
+.text3{
+    left: 37px; 
+width: 88.578px;
+
+}
+.text4{
+    left: 37px;
+    width: 93.646px;
+    
+}
+.text5{
+    left: 37px;
+width: 69.499px;
+}
+.text6{
+    left: 37px;
+width: 57.727px;
+
+}
+.text7{
+    width: 80.818px;
+    left: 37px;
+}
+.text8{
+    width: 70.556px;
+    left: 37px;
+}
+.text9{
+    width: 64.141px;
+    left: 37px;
+}
+.icons{
+    width: 20px;
+height: 20px;
+flex-shrink: 0;
+}
+.navbar{
+    position: absolute;
+    padding: 5px;
+    left: 45px;
+    width: 123.646px;
+height: 20.091px;
+flex-shrink: 0;
+display: flex;
+
+
+
+}
+.navbar:hover{
+    
+    border-radius: 5px;
+background: #333F51;
+}
+.outer{
+    position: absolute;
+    /* left: 1px; */
+}
+.company{
+    
+    top: 100px;
+    
+}
+.quotes{
+    
+    top: 160px;
+    
+}
+.setting{
+   
+    top: 250px;
+    
+}
+.calender{
+    
+    top: 190px;
+    
+}
+.reports{
+    
+    top: 220px;
+    
+}
+.item{
+    
+    top: 130px;
+    
+}

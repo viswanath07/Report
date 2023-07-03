@@ -1,0 +1,23 @@
+<svg width="46" height="41" viewBox="0 0 46 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="v2-100p-stacked-line-chart-color" clip-path="url(#clip0_1231_36636)">
+<g id="Mask group">
+<mask id="mask0_1231_36636" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="46" height="41">
+<g id="Group">
+<path id="Vector" d="M0 4.29507C0 2.45219 1.71625 0.958252 3.83333 0.958252H42.1667C44.2838 0.958252 46 2.45219 46 4.29507V37.6632C46 39.5061 44.2838 41 42.1667 41H3.83333C1.71625 41 0 39.5061 0 37.6632V4.29507Z" fill="#C4C4C4"/>
+</g>
+</mask>
+<g mask="url(#mask0_1231_36636)">
+<g id="Group_2">
+<path id="Vector_2" d="M46.4792 9.34355L34.0404 19.6456L29.4404 17.0102L17.4896 18.6872L10.5417 17.7289L6.2104 21.5622H-3.11475" stroke="#00D2AA" stroke-width="2.0125" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M46.4793 1.91685H34.0405H-0.718628" stroke="#FFCC69" stroke-width="1.91667" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M0.000488281 35.4582L10.0479 38.8124L18.0374 28.9895L30.3605 34.979L49.1144 20.8436" stroke="#00AAE1" stroke-width="2.0125" stroke-linecap="square" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1231_36636">
+<rect width="46" height="41" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,17 @@
+<svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="v2-stacked-line-chart-color">
+<g id="Mask group">
+<mask id="mask0_1231_36622" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="46" height="46">
+<g id="Group">
+<path id="Vector" d="M46 0.932358H0V45.6891H46V0.932358Z" fill="#C4C4C4"/>
+</g>
+</mask>
+<g mask="url(#mask0_1231_36622)">
+<g id="Group_2">
+<path id="Vector_2" d="M1 33.8267L10.0012 37L17.1589 27.7067L28.1989 33.3733L45 20" stroke="#00D2AA" stroke-width="1.927" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M1 21.0133L10.0012 24L17.1589 15.2533L28.1989 20.5867L45 8" stroke="#FFCC69" stroke-width="1.927" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</g>
+</svg>

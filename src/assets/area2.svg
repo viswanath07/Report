@@ -1,0 +1,24 @@
+<svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="v2-stacked-area-chart-color" clip-path="url(#clip0_1232_36801)">
+<g id="Mask group">
+<mask id="mask0_1232_36801" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="46" height="46">
+<g id="Group">
+<path id="Vector" d="M46 0.932358H0V45.6891H46V0.932358Z" fill="#C4C4C4"/>
+</g>
+</mask>
+<g mask="url(#mask0_1232_36801)">
+<g id="Group_2">
+<path id="Vector_2" opacity="0.2" d="M46.0007 15.1521V41.9595C46.0007 44.0193 44.2845 45.6892 42.1674 45.6892H3.83407C1.71697 45.6892 0.000732332 44.0193 0.000732422 41.9595L0.000733059 27.1796L9.66073 29.9278L17.7107 20.538L29.9007 26.2635L46.0007 15.1521Z" fill="#00D2AA"/>
+<path id="Vector_3" opacity="0.2" d="M46.0007 1.86484V14.9189L30.6667 26.3412L17.9686 20.7466L10.0625 30.3041L0.000732422 27.0406L0.000733005 13.5203H6.22897L10.781 9.79051L17.9686 10.7229L29.7081 8.85808L34.0209 11.4223L42.8855 4.42903L46.0007 1.86484Z" fill="#FFCC69"/>
+<path id="Vector_4" d="M46.4792 1.6317L34.0404 11.6553L29.4404 9.09116L17.4896 10.7229L10.5417 9.79048L6.2104 13.5202H-3.11475" stroke="#FFCC69" stroke-width="2.0125" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M0.000488281 27.0404L10.0479 30.3039L18.0374 20.7465L30.3605 26.5742L49.1144 12.8208" stroke="#00D2AA" stroke-width="2.0125" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1232_36801">
+<rect width="46" height="46" fill="white"/>
+</clipPath>
+</defs>
+</svg>
