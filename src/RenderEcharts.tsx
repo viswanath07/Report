@@ -17,7 +17,35 @@ function RenderEcharts(props){
    
     const height=(props.height!=null)?props.height:80
     
-    
+    const line={
+      legend:props.legend,
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          
+          type: props.type,
+          
+          
+          
+          label: {
+            show: false,
+            position: 'center'
+          },
+          
+          
+          data:data,
+          // itemStyle: {normal: {color: '#00D2AA'}},
+        }
+      ],
+      height:400
+    }
     const pie={
         legend:props.legend,
         
@@ -25,7 +53,7 @@ function RenderEcharts(props){
           {
             
             type: props.type,
-            radius: ['40%', '70%'],
+            radius: [props.radius, '70%'],
             // avoidLabelOverlap: false,
             
             label: {
@@ -105,6 +133,9 @@ function RenderEcharts(props){
       let options
       if (props.type==='bar') {
         options=bar
+      }
+      else if(props.type==='line'){
+        options=line
       }
       else if(props.type==='pie'){
         options=pie

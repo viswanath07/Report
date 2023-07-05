@@ -45,7 +45,7 @@ top: 'center'
                 <div className='common-report report-1' name="report_1"  > 
                     <div className='container-1'>
                         <div className='echart-1'>
-                            <RenderEcharts type='pie' data={data} export={false}/>
+                            <RenderEcharts type='pie' data={data} export={false} radius={30}/>
                         </div>
                             {/* <span className='common-footer footer-1'>Leads obtain Today</span> */}
                             <span className='common-header header-1'>Today Leads</span>
@@ -56,7 +56,7 @@ top: 'center'
                 <div className='common-report report-2' name="report_2">
                     <div className='container-1'>
                         <div className='echart-1'>
-                        <RenderEcharts type='pie' data={data} export={false}/>
+                        <RenderEcharts type='pie' data={data} export={false} radius={30}/>
                         </div>
                             {/* <span className='common-footer footer-2'>Leads By state</span> */}
                             <span className='common-header header-2'>Lead and their states</span>
@@ -67,7 +67,7 @@ top: 'center'
                 <div className='common-report report-3' name="report_3">
                     <div className='container-1'>
                         <div className='echart-1'>
-                        <RenderEcharts type='pie' data={data} export={false}/>
+                        <RenderEcharts type='pie' data={data} export={false} radius={30}/>
                         </div>
                             {/* <span className='common-footer footer-3'>Leads By source</span> */}
                             <span className='common-header header-3'>Lead and their sources</span>
@@ -78,7 +78,7 @@ top: 'center'
                 <div className='common-report report-4' name="report_4">
                     <div className='container-1'>
                         <div className='echart-1'>
-                        <RenderEcharts type='pie' data={data} export={false}/>
+                        <RenderEcharts type='pie' data={data} export={false} radius={30}/>
                         </div>
                             {/* <span className='common-footer footer-4'>Leads trends</span> */}
                             <span className='common-header header-4'>Lead trends</span>

@@ -47,6 +47,8 @@ import column3 from '../src/assets/column3.svg'
 import arae1 from '../src/assets/area1.svg'
 import arae2 from '../src/assets/area2.svg'
 import arae3 from '../src/assets/area3.svg'
+import General from './Components/General'
+import Format from './Components/Format'
 
 
 
@@ -84,7 +86,8 @@ top: 'center'
 
       }
       const location=useLocation()
-      const state =location.state
+      const state =location.state //link state
+
       const [position,setPosition]=useState('')
       const [legend,setLegend]=useState({})
       const [menubar,setMenuBar]=useState(false)
@@ -96,6 +99,26 @@ top: 'center'
       const [axis,setaxis]=useState(false)
       const [border,setBorder]=useState(false)
       const [chart,setchart]=useState(false)
+      const [format,setFormat]=useState(false)
+      const [pieReadius,setPieradius]=useState(120)
+      const [chartType,setType]=useState(state.type)
+      const [mouse,setMouse]=useState(false)
+      const [pop,setPop]=useState(false)
+
+      function handlePop(){
+        setPop(!pop)
+      }
+      function handleMouseEnter(){
+        
+        setMouse(true)
+      }
+      function handleMouseLeave(){
+        setMouse(false)
+      }
+
+      function handleFormat(){
+        setFormat(!format)
+      }
 
       function handleChart(){
         setchart(!chart)
@@ -114,6 +137,7 @@ top: 'center'
 
       function handleSetting(){
           setSetting(!setting)
+          
       }
       function handleExport(){
         setExport(!exe)
@@ -196,10 +220,11 @@ top: 'center'
                     <button value='bottom' onClick={handleClick}>bottom</button>
                 </div>
                 <div className='pie' id='pie'>
-                <RenderEcharts type={state.type} data={state.data} legend={legend} style={state.style} height={state.height} export={true} />
+                <RenderEcharts type={chartType} data={state.data} legend={legend} style={state.style} height={state.height} export={true} radius={pieReadius}/>
                 {/* <Pie/> */}
                 {/* <RenderEcharts type='bar' data={data}  style={style} height='400'/> */}   
                 </div>
+                
                 
                 <div className='dropdown-menu' style={{display:(menubar)?'flex':'none'}}>
                   <div className='options'>
@@ -322,28 +347,7 @@ top: 'center'
                             </label>
 
                         </div>
-                        <div className='general-on' style={{display:(general)?'block':'none'}}>
-                        <div className='title'>
-                          <span className='title-head'>Title</span>
-                          <input type='text'placeholder='Tile Name' className='input-field title-head'/>
-                        </div>
-                        <div className='description'>
-                          <span className='title-head'>Description ( Optional )</span>
-                          <input type='text' placeholder='Add some comments' className='input-area title-head weight'/>
-                        </div>
-                        <div className='display-unknown'>
-                          <span className='title-head'>Display 'Unknown' value as:</span>
-                          <input type='text' placeholder='Unknown' className='input-unknown'/>
-                        </div>
-                        <div className='chart-contain'>
-                        <span className='title-head'>Chart Effect</span>
-                        <input type='text' placeholder='Default' className='input-unknown'/>
-                        </div>
-                        <div className='show'>
-                          <input type='radio' />
-                          <span className='title-head weight2'>Show Missing Values</span>
-                        </div>
-                        </div>
+                        <General  state={general}/>
                         <div className='general'>
                           <span className='general-text'>Axis</span>
                           <label className="toggle-switch">
@@ -482,9 +486,55 @@ top: 'center'
                         <div className='general'>
                           <span className='general-text'>Format</span>
                           <label className="toggle-switch">
-                                <input type="checkbox"/>
+                                <input type="checkbox" onClick={handleFormat}/>
                                 <span className="toggle-slider"></span>
                             </label>
+                        </div>
+                        <div className='format-container' style={{display:(format)?'block':'none'}}>
+                           <div className='xaxis-format'>
+                            <div className='format-head'>
+                              <span className='title-head'>X Axis</span>
+                              <span className='head-green' onClick={handlePop}>Format</span>
+                            </div>
+                            <div className='column-axis'>
+                              <span className='title-head weight'>Column</span>
+                              <input type='text' className='input-column' placeholder='Date'/>
+                            </div>
+                            <div className='tool-axis'>
+                              <span className='title-head weight'>Tooltip Label</span>
+                              <input type='text' className='tool-input' placeholder='Year of Date'/>
+                            </div>
+                           </div>
+                           <div className='xaxis-format'>
+                            <div className='format-head'>
+                              <span className='title-head'>Y Axis</span>
+                              <span className='head-green' onClick={handlePop}>Format</span>
+                            </div>
+                            <div className='column-axis'>
+                              <span className='title-head weight'>Column</span>
+                              <input type='text' className='input-column' placeholder='Cost'/>
+                            </div>
+                            <div className='tool-axis'>
+                              <span className='title-head weight'>Tooltip Label</span>
+                              <input type='text' className='tool-input' placeholder='Total Cost'/>
+                            </div>
+                           </div>
+                           <div className='xaxis-format'>
+                            <div className='format-head'>
+                              <span className='title-head'>Color</span>
+                              <span className='head-green' onClick={handlePop}>Format</span>
+                            </div>
+                            <div className='column-axis'>
+                              <span className='title-head weight'>Column</span>
+                              <input type='text' className='input-column' placeholder='Redion'/>
+                            </div>
+                            <div className='tool-axis'>
+                              <span className='title-head weight'>Tooltip Label</span>
+                              <input type='text' className='tool-input' placeholder='Redion'/>
+                            </div>
+                           </div>
+                          
+                
                         </div>
                         <div className='general'>
                           <span className='general-text'>Legend</span>
@@ -519,18 +569,23 @@ top: 'center'
                   <div className='pie-container'>
                     <span className='pie-head'>Pie</span>
                     <div className='pie-box'>
-                          <div className='chart-box'>
+                          <div className='chart-box'  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+                          onClick={() => {setPieradius(120) 
+                            setType('pie')}}>
                             <img src={pie} className='chart-css'/>
+                            {mouse && <span className='hover-msg'>Donut Chart</span>}
                           </div>
-                          <div className='chart-box'>
+                          <div className='chart-box' onClick={() => {setPieradius(0)
+                          setType('pie')}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                             <img src={pie_full} className='chart-css'/>
+                            {mouse && <span className='hover-msg'>Donut Chart</span>}
                           </div>
                     </div>
                   </div>
                   <div className='line-container'>
                     <span className='pie-head'>Line</span>
                     <div className='line-box'>
-                          <div className='chart-box'>
+                          <div className='chart-box' onClick={() => setType('line')}>
                             <img src={line1} className='chart-css'/>
                           </div>
                           <div className='chart-box'>
@@ -589,8 +644,61 @@ top: 'center'
                   </div>
                   
                 </div>
-      
+                <div style={{display:(pop)?'block':'none'}}>
+            <div className='format'>
+                <div className='format-head-contain'>
+                    <span className='for-head'>Format Column</span>
+                    <img className='close' src={close_icon} onClick={handlePop}/>
+                </div>
+                <div className='format-frame-pop'>
+                    <div className='sub-frame'>
+                        <div className='for-input'>
+                            <span className='popup-title'>Column Name</span>
+                            <input type='text' className='pop-input' placeholder='Cost'/>
+                        </div>
+                        <div className='for-input'>
+                            <span className='popup-title'>Datatype</span>
+                            <input type='text' className='pop-input' placeholder='Currency'/>
+                        </div>
+                        <div className='check-frame'>
+                            <input type='checkbox' style={{width:16, height:16}} className='checkbox'/>
+                            <span className='title-head-1'>Use this format throughout the chart</span>
+                        </div>
+                        <div className='for-input'>
+                            <span className='popup-title'>Currency Symbol</span>
+                            <select className='pop-input title-head-1' placeholder='Currency'>
+                                <option >Currency</option>
+                            </select>
+                        </div>
+                        <div className='for-input'>
+                            <span className='popup-title'>Units</span>
+                            <select className='pop-input title-head-1' placeholder='Currency'>
+                                <option >Auto (User Locale Specific)</option>
+                            </select>
+                        </div>
+                        <div className='for-input'>
+                            <span className='popup-title'>Decimal Places</span>
+                            <select className='pop-input title-head-1' placeholder='Currency'>
+                                <option >2</option>
+                            </select>
+                        </div>
+                        <div className='for-input'>
+                            <span className='popup-title'>Negative Number Display</span>
+                            <select className='pop-input title-head-1' placeholder='Currency'>
+                                <option >With Negative Sign. Eg: -$10</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
                 
+                <button className='pop-button ok'>OK</button>
+                
+                
+            </div>
+            </div>
+      
+                {/* <Format state={pop} set={() => handlePop}/> */}
                 
             </div>
             
