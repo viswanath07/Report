@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500&family=Poppins:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&display=swap');
+
+
+.threshold-bar{
+    width: 371px;
+height: 541.4px;
+flex-shrink: 0;
+}
+.threshold-head{
+    position: relative;
+    left: 13px;
+    display: inline-flex;
+justify-content: space-between;
+align-items: center;
+gap: 280px;
+}
+.thres-head{
+    color: #2A3342;
+font-size: 14px;
+font-family: Manrope;
+font-style: normal;
+font-weight: 700;
+line-height: 26.7px;
+}
+.remove-contain{
+    display: flex;
+width: 39px;
+justify-content: space-between;
+align-items: center;
+}
+.red-text{
+    color: #FF3D3D;
+text-align: right;
+font-size: 10px;
+font-family: Manrope;
+font-style: normal;
+font-weight: 700;
+line-height: 26.7px;
+text-decoration-line: underline;
+}
+.thres-body{
+    display: inline-flex;
+flex-direction: column;
+align-items: flex-end;
+position: relative;
+top: 5px;
+}
+.thres-right{
+    left: -15px;
+}
+.thres-left{
+    right: 60px;
+}
+.col{
+    background: #F7F7FC;
+}
+.double-contain{
+    position: relative;
+    top: 25px;
+    left: -9px;
+    width: 371px;
+height: 38.694px;
+flex-shrink: 0;
+border-radius: 6.4px;
+border: 0.8px solid #E1E6EF;
+background: #FFF;
+box-shadow: 0px 0.800000011920929px 1.600000023841858px 0px rgba(184, 200, 224, 0.22);
+}
+.double-select{
+    color: #47567E;
+font-size: 11.2px;
+font-family: Manrope;
+font-style: normal;
+font-weight: 500;
+line-height: 19.2px;
+    width: 109px;
+height: 39px;
+flex-shrink: 0;
+border-radius: 6.4px;
+border: 0.8px solid #E1E6EF;
+background: #E1E6EF;
+box-shadow: 0px 0.800000011920929px 1.600000023841858px 0px rgba(184, 200, 224, 0.22);
+}
+.thres-button{
+    width: 76px;
+height: 29.256px;
+flex-shrink: 0;
+border-radius: 6.4px;
+border: 0.8px solid #22C55E;
+background: #FFF;
+box-shadow: 0px 0.800000011920929px 1.600000023841858px 0px rgba(184, 200, 224, 0.22);
+color: #22C55E;
+text-align: center;
+font-size: 11.2px;
+font-family: Manrope;
+font-style: normal;
+font-weight: 500;
+line-height: 19.2px;
+}

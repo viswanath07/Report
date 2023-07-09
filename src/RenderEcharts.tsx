@@ -14,10 +14,12 @@ import puppeteer from 'puppeteer'
 function RenderEcharts(props){
     var b=props.type
     const data=props.data
-   
+    const title=(props.title!=null)?(props.title):''
     const height=(props.height!=null)?props.height:80
     
+    
     const line={
+      title:title,
       legend:props.legend,
       xAxis: {
         type: 'category',
@@ -47,6 +49,7 @@ function RenderEcharts(props){
       height:400
     }
     const pie={
+      title:title,
         legend:props.legend,
         
         series: [
@@ -70,6 +73,7 @@ function RenderEcharts(props){
         ]
       }
       const bar={
+        title:title,
         legend:props.legend,
         xAxis: {
             type: 'category',
@@ -100,6 +104,7 @@ function RenderEcharts(props){
         height:height
       }
       const funnel={
+        title:title,
         legend:props.legend,
         
         

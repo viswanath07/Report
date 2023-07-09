@@ -13,7 +13,7 @@ import NavBar from './NavBar'
 import RenderEcharts from './RenderEcharts'
 import { useState } from 'react'
 
-import filter from '../src/assets/Filter.svg'
+import filters from '../src/assets/Filter.svg'
 import vector from '../src/assets/Vector.svg'
 import settings from '../src/assets/setting.svg'
 import menu from '../src/assets/menu.svg'
@@ -49,11 +49,18 @@ import arae2 from '../src/assets/area2.svg'
 import arae3 from '../src/assets/area3.svg'
 import General from './Components/General'
 import Format from './Components/Format'
+import Legend from './Components/Legend'
+import Threshold from './Components/Threshold'
+import axios from 'axios'
+import FormatPop from './Components/FormatPop'
+import CommonChart from './Components/CommonChart'
+import Filter from './Components/Filter'
 
 
 
 function Summa(){
 
+    
     const data=[
         { value: 1048, name: 'Search Engine  ' },
         { value: 735, name: 'Direct' },
@@ -61,6 +68,16 @@ function Summa(){
         { value: 484, name: 'Union Ads' },
         { value: 300, name: 'Video Ads' }
       ]
+      const xaxis1={
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+      }
+      const yaxis1={
+        
+          type: 'value'
+        
+      }
+      const itemStyle1={normal: {color: '#00D2AA'}}
       const fun= [
         { value: 60,itemStyle: {color: '#00D7E1'} },
         { value: 40 ,itemStyle: {color: '#00D2AA'}},
@@ -68,11 +85,28 @@ function Summa(){
         { value: 80,itemStyle: {color: '#00AAE1'}},
         { value: 100,itemStyle: {color: '#0082D2'} }
       ]
+      const fun1=[
+        { value: 60,},
+        { value: 40 ,},
+        { value: 20,},
+        { value: 80,},
+        { value: 100, }
+      ]
       const style={ height: "80vh", left: 50, top: 50, width: "90vw" }
       const legend_side= {
         orient: 'vertical',
         left:0,
 top: 'center'
+      }
+      const legend_right={
+        orient: 'vertical',
+        right:0,
+top: 'center'
+      }
+      const legend_top={
+        orient:'horizontal',
+        top: '5%',
+        left: 'center'
       }
       const legend_bottom= {
         orient:'horizontal',
@@ -87,7 +121,9 @@ top: 'center'
       }
       const location=useLocation()
       const state =location.state //link state
-
+      
+      const [funbar,setFunbar]=useState(state.fun)
+      const radius=['0%', '70%']
       const [position,setPosition]=useState('')
       const [legend,setLegend]=useState({})
       const [menubar,setMenuBar]=useState(false)
@@ -100,11 +136,82 @@ top: 'center'
       const [border,setBorder]=useState(false)
       const [chart,setchart]=useState(false)
       const [format,setFormat]=useState(false)
-      const [pieReadius,setPieradius]=useState(120)
+      const [pieReadius,setPieradius]=useState(state.radius)
       const [chartType,setType]=useState(state.type)
       const [mouse,setMouse]=useState(false)
       const [pop,setPop]=useState(false)
+      const [legView,setLegView]=useState(false)
+      const [legPosition,setLegPosition]=useState("")
+    const [title,setTitle]=useState("")
+    const [chartTitle,setChartTitle]=useState({})
+    const [thres,setThres]=useState(false)
+    const [smallPop,setSmall]=useState(false)
+    const[place1,setPlace1]=useState("")
+    const[place2,setPlace2]=useState("")
+    const[xaxis,setXaxis]=useState(state.xaxis)
+    const[yaxis,setyaxis]=useState(state.yaxis)
+    const[itemstyle,setItemStyle]=useState(state.itemstyle)
+    const[datas,setdatas]=useState(state.data)
+    const[smooth,setSmooth]=useState(false)
+    const[areaStyle,setAreaStyle]=useState(false)
+    const[filter,setfilter]=useState(false)
 
+    const getFilter= () =>{
+      setfilter(!filter)
+    }
+    const title1={
+      text: title,
+      left: 'center'
+    }
+    function handleSmallPop(e){
+      console.log(e.target.id)
+      if(e.target.id==="pop1"){
+        setPlace1("Date")
+        setPlace2("Date")
+      }
+      else{
+        setPlace1("Region")
+        setPlace2("Plain Text")
+      }
+      setSmall(!smallPop)
+    }
+    
+    function handleThreshold(){
+      setThres(!thres)
+    }
+    function handleLegend(){
+      setLegView(!legView)
+    }
+
+    function handleTitle(e){
+        setTitle(e.target.value)
+    }
+
+    function handleLeg(e){
+        
+        setLegPosition(e.target.value)
+
+    }
+    
+
+      const getData =(data) =>{
+        setSmall(data)
+      }
+      const handleApply =  () =>{
+        (legPosition==='Left')?setLegend(legend_side):
+        (legPosition==='Bottom')?setLegend(legend_bottom):
+        (legPosition==='Top')?setLegend(legend_top):setLegend(legend_right)
+
+        
+        setChartTitle(title1)
+        
+      }
+      const handleDouble = async (e) =>{
+        e.preventDefault()
+        await axios.post("http://localhost:8080/legend",legend)
+
+      }
+      
       function handlePop(){
         setPop(!pop)
       }
@@ -208,19 +315,21 @@ top: 'center'
                         <span className='common-day quarter'>Quarter</span>
                         <span className='common-day year'>Year</span> */}
                         <img src={vector} className='iconss' onClick={handleChart}/>
-                        <img src={filter} className='iconss'></img>
+                        <img src={filters} className='iconss' onClick={() => {setfilter(!filter)}}></img>
                         <img src={settings} className='iconss' onClick={handleSetting}/>
                         <img src={menu} className='iconss' onClick={handleMenu}/>
                     </div>
                 </div>
               
-                <div className='legend'>
+                {/* <div className='legend'>
                     <button value='top' onClick={handleClick}>Top</button>
                     
                     <button value='bottom' onClick={handleClick}>bottom</button>
-                </div>
+                </div> */}
                 <div className='pie' id='pie'>
-                <RenderEcharts type={chartType} data={state.data} legend={legend} style={state.style} height={state.height} export={true} radius={pieReadius}/>
+                {/* <RenderEcharts type={chartType} data={state.data} legend={legend}  style={state.style} height={state.height} export={true} radius={pieReadius} title={chartTitle}/> */}
+                <CommonChart type={chartType} data={datas} legend={legend} style={state.style} height={state.height} radius={pieReadius}
+                 xaxis={xaxis} yaxis={yaxis} itemstyle={itemstyle} title={chartTitle} {...funbar} smooth={smooth} areastyle={areaStyle}/>
                 {/* <Pie/> */}
                 {/* <RenderEcharts type='bar' data={data}  style={style} height='400'/> */}   
                 </div>
@@ -494,7 +603,7 @@ top: 'center'
                            <div className='xaxis-format'>
                             <div className='format-head'>
                               <span className='title-head'>X Axis</span>
-                              <span className='head-green' onClick={handlePop}>Format</span>
+                              <span className='head-green' onClick={handleSmallPop} id="pop1">Format</span>
                             </div>
                             <div className='column-axis'>
                               <span className='title-head weight'>Column</span>
@@ -522,7 +631,7 @@ top: 'center'
                            <div className='xaxis-format'>
                             <div className='format-head'>
                               <span className='title-head'>Color</span>
-                              <span className='head-green' onClick={handlePop}>Format</span>
+                              <span className='head-green' onClick={handleSmallPop} id='pop2'>Format</span>
                             </div>
                             <div className='column-axis'>
                               <span className='title-head weight'>Column</span>
@@ -539,18 +648,80 @@ top: 'center'
                         <div className='general'>
                           <span className='general-text'>Legend</span>
                           <label className="toggle-switch">
-                                <input type="checkbox"/>
+                                <input type="checkbox" onClick={handleLegend}/>
                                 <span className="toggle-slider"></span>
                             </label>
                         </div>
+                        {/* <Legend  onselect={getData} apply={apply}/> */}
+              <div className='legend-container' style={{display:(legView)?'block':'none'}}>
+                <div className='font-context'>
+                    <span className='border-head-pos'>Legend Position</span>
+                        <select className='select-border-name  font-text legend-pos' value={legPosition} onChange={handleLeg}>
+                        <option className=' title-head weight'>Default</option>
+                            <option className=' title-head weight'>Right</option>
+                            <option className=' title-head weight'>Left</option>
+                            <option className=' title-head weight'>Top</option>
+                            <option className=' title-head weight'>Bottom</option>
+                        </select>
+                </div>
+                <div className='column-axis'>
+                    <span className='title-head'>Title</span>
+                    <input type='text' className='input-column back' placeholder='Title Name' value={title} onChange={handleTitle}/>
+                </div>
+                <div className='font-context'>
+                    <span className='border-head-pos'>Font</span>
+                        <select className='select-border-name  font-text legend-right'>
+                            <option className=' title-head weight'>Default</option>
+                        </select>
+                </div>
+                <div className='leg-filter leg'>
+                <input type='checkbox' style={{width:16, height:16}} className=''/>
+                            <span className='title-head-1'>Legend Filter</span>
+                   </div>
+                <div className='legend-check-container'>
+                  <div className='leg-check-sub'>
+                      <input type='radio' name="check" style={{width:14, height:14}} className='checkbox'/>
+                      <span className='check-text'>Solid</span>
+                  </div>
+                  <div className='leg-check-sub'>
+                      <input type='radio' name="check" style={{width:14, height:14}} className='checkbox'/>
+                      <span className='check-text'>Monochrome</span>
+                  </div>
+                  <div className='leg-check-sub'>
+                      <input type='radio' name="check" style={{width:14, height:14}} className='checkbox'/>
+                      <span className='check-text'>Gradient</span>
+                  </div>
+                  <div className='leg-check-sub'>
+                      <input type='radio' name="check" style={{width:14, height:14}} className='checkbox'/>
+                      <span className='check-text'>Pattern</span>
+                  </div>
+                  
+                </div>
+                <div className='font-context'>
+                    <span className='border-head-pos'>Gradient Palette</span>
+                        <select className='select-border-name  font-text leg-pos'>
+                            <option className=' title-head weight'>Gradient1</option>
+                        </select>
+                </div>
+                <div className='leg-color-contain'>
+                       <span className='border-head-pos'>Colors</span>
+                       <div className='leg-color-bar'>
+                       <input type='color' value='#FFFFFF' className='border-color-leg color-pos' placeholder='Choose Color'/>
+                       <input type='color' value='#FFFFFF' className='border-color-leg border color-pos' placeholder='Choose Color'/>
+                       </div>
+                </div>
+                
+
+              </div>
                         <div className='general'>
-                          <span className='general-text'>Add Quest</span>
+                          <span className='general-text'>Threshold</span>
                           <label className="toggle-switch">
-                                <input type="checkbox"/>
+                                <input type="checkbox" onClick={handleThreshold}/>
                                 <span className="toggle-slider"></span>
                             </label>
                         </div>
-                        <button className='setting-button'>Apply</button>
+                        <Threshold state={thres}/>
+                        <button className='setting-button' onClick={handleApply} onDoubleClick={handleDouble}>Apply</button>
                       </div>
                       
                    </div>
@@ -569,14 +740,15 @@ top: 'center'
                   <div className='pie-container'>
                     <span className='pie-head'>Pie</span>
                     <div className='pie-box'>
-                          <div className='chart-box'  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
-                          onClick={() => {setPieradius(120) 
-                            setType('pie')}}>
+                          <div className='chart-box' 
+                          onClick={() => {((state.radius)? setPieradius(state.radius):setPieradius(['40%', '70%'])),
+                          (chartType==='funnel')?setdatas(data):''
+                            setType('pie'),setItemStyle({}),setFunbar({})}}>
                             <img src={pie} className='chart-css'/>
                             {mouse && <span className='hover-msg'>Donut Chart</span>}
                           </div>
-                          <div className='chart-box' onClick={() => {setPieradius(0)
-                          setType('pie')}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                          <div className='chart-box' onClick={() => {setPieradius(radius)
+                          setType('pie'),setItemStyle({})}} >
                             <img src={pie_full} className='chart-css'/>
                             {mouse && <span className='hover-msg'>Donut Chart</span>}
                           </div>
@@ -585,16 +757,20 @@ top: 'center'
                   <div className='line-container'>
                     <span className='pie-head'>Line</span>
                     <div className='line-box'>
-                          <div className='chart-box' onClick={() => setType('line')}>
+                          <div className='chart-box' onClick={() => {setType('line') 
+                              setXaxis(xaxis1) ,setyaxis(yaxis1),setSmooth(false),setAreaStyle(false)}}>
                             <img src={line1} className='chart-css'/>
                           </div>
-                          <div className='chart-box'>
+                          <div className='chart-box' onClick={() => {setType('line') 
+                              setXaxis(xaxis1) ,setyaxis(yaxis1)}}>
                             <img src={line2} className='chart-css'/>
                           </div>
-                          <div className='chart-box'>
+                          <div className='chart-box' onClick={() => {setType('line') 
+                              setXaxis(xaxis1) ,setyaxis(yaxis1), setSmooth(true)}}>
                             <img src={line3} className='chart-css'/>
                           </div>
-                          <div className='chart-box'>
+                          <div className='chart-box' onClick={() => {setType('line') 
+                              setXaxis(xaxis1) ,setyaxis(yaxis1)}}>
                             <img src={line4} className='chart-css'/>
                           </div>
                     </div>
@@ -602,13 +778,16 @@ top: 'center'
                   <div className='bar-container'>
                     <span className='pie-head'>Bar</span>
                     <div className='bar-box'>
-                    <     div className='chart-box'>
+                    <     div className='chart-box' onClick={() => {setType('bar') 
+                              setXaxis(xaxis1) ,setyaxis(yaxis1),setItemStyle(itemStyle1)}}>
                             <img src={bar1} className='chart-css'/>
                           </div>
-                          <div className='chart-box'>
+                          <div className='chart-box' onClick={() => {setType('bar') 
+                              setXaxis(xaxis1) ,setyaxis(yaxis1),setItemStyle(itemStyle1)}}>
                             <img src={bar2} className='chart-css'/>
                           </div>
-                          <div className='chart-box'>
+                          <div className='chart-box' onClick={() => {setType('bar') 
+                              setXaxis(xaxis1) ,setyaxis(yaxis1),setItemStyle(itemStyle1)}}>
                             <img src={bar3} className='chart-css'/>
                           </div>
                     </div>
@@ -616,7 +795,7 @@ top: 'center'
                   <div className='bar-container chart-pos'>
                     <span className='pie-head'>Column</span>
                     <div className='bar-box'>
-                    <     div className='chart-box'>
+                    <     div className='chart-box' >
                             <img src={column1} className='chart-css'/>
                           </div>
                           <div className='chart-box'>
@@ -630,8 +809,9 @@ top: 'center'
                   <div className='bar-container chart-pos2'>
                     <span className='pie-head'>Area</span>
                     <div className='bar-box'>
-                    <     div className='chart-box'>
-                            <img src={arae1} className='chart-css'/>
+                    <     div className='chart-box' onClick={() => {setType('line') 
+                              setXaxis(xaxis1) ,setyaxis(yaxis1),setAreaStyle(true)}}>
+                            <img src={arae1} className='chart-css' />
                           </div>
                           <div className='chart-box'>
                             <img src={arae2} className='chart-css'/>
@@ -692,11 +872,15 @@ top: 'center'
                     
                 </div>
                 
+                
                 <button className='pop-button ok'>OK</button>
                 
                 
             </div>
             </div>
+            <FormatPop state={smallPop} place1={place1} place2={place2} child={getData}/>
+            <Filter state={filter} child={getFilter}/>
+           
       
                 {/* <Format state={pop} set={() => handlePop}/> */}
                 
